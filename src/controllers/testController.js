@@ -1,5 +1,7 @@
 const { DateTime } = require("luxon");
+const asyncHandler = require("express-async-handler");
 const testModel = require('../models/testModel')
+const bcrypt = require("bcrypt");
 
 //@desc firstTest Test
 //@route GET /api/test/firstTest
@@ -21,7 +23,7 @@ const errorTest = (req,res) => {
 //@desc postTestMongodb Test
 //@route POST /api/test/mongodbTest
 //@access public
-const postTestMongodb = async (req,res) => {
+const postTestMongodb = asyncHandler(async (req,res) => {
     const {testName,testContent,testResult} = req.body;
     const time = String(
         DateTime.now().setZone("Asia/Ho_Chi_Minh").toFormat("yyyy-MM-dd HH:mm:ss")
@@ -40,10 +42,27 @@ const postTestMongodb = async (req,res) => {
         res.status(400);
         throw new Error('testName, testContent, testResult need to be filled');
     }
+})
+
+//@desc bcryptTest Test
+//@route POST /api/test/bcryptTest
+//@access public
+const bcryptTest = asyncHandler(async (req,res) => {
+    const { text } = req.body;
+    if(text){
+        const hashedText = await bcrypt.hash(text,10);
+        // console.log(hashedText);
+        
+        res.status(200).json({
+            result: `${text} after using bcrypt: ${hashedText}`
+        });
+    }else{
+        res.status(400);
+        throw new Error("text field nessesary!")
+    }
+    
+})
 
 
-}
 
-
-
-module.exports = {firstTest,errorTest, postTestMongodb}
+module.exports = {firstTest,errorTest, postTestMongodb,bcryptTest}

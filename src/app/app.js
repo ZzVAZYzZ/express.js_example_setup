@@ -8,6 +8,11 @@ const { default: helmet } = require('helmet');
 const router = require('../routes/mainRoute');
 const errorHandler = require('../middlewares/errorHandler');
 const { mongodbConnect } = require('../databases/mongodb/mongodbConnect');
+const swagger = require('../utils/swagger/swagger');
+
+
+
+// test
 
 
 //config
@@ -27,7 +32,7 @@ mongodbConnect();
 
 //init routers
 app.use('/',router);
-
+app.use('/',swagger);
 
 //init error handler
 app.use(errorHandler);

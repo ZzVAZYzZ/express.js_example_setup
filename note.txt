@@ -1,0 +1,11 @@
+
+test curl https://localhost:8000/api/test/firstTest -i
+
+Remove-item alias:curl
+
+
+create CA script
+
+openssl genrsa -out key.pem
+openssl req -new -key key.pem -out csr.pem
+openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
