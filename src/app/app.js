@@ -9,7 +9,7 @@ const router = require('../routes/mainRoute');
 const errorHandler = require('../middlewares/errorHandler');
 const { mongodbConnect } = require('../databases/mongodb/mongodbConnect');
 const swagger = require('../utils/swagger/swagger');
-
+const initRedis = require('../databases/redis/redis');
 
 
 // test
@@ -29,6 +29,7 @@ app.use(helmet())
 
 //init databases
 mongodbConnect();
+initRedis.connectRedis();
 
 //init routers
 app.use('/',router);
