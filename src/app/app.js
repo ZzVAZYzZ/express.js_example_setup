@@ -10,7 +10,8 @@ const errorHandler = require('../middlewares/errorHandler');
 const { mongodbConnect } = require('../databases/mongodb/mongodbConnect');
 const swagger = require('../utils/swagger/swagger');
 const initRedis = require('../databases/redis/redis');
-
+const useragent = require('express-useragent');
+const cookieParser = require('cookie-parser');
 
 // test
 
@@ -24,8 +25,10 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
-app.use(compression())
-app.use(helmet())
+app.use(compression());
+app.use(helmet());
+app.use(useragent.express());
+app.use(cookieParser());
 
 //init databases
 mongodbConnect();
