@@ -9,3 +9,18 @@ create CA script
 openssl genrsa -out key.pem
 openssl req -new -key key.pem -out csr.pem
 openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
+
+
+declaration function
+value-return function
+void function
+expression function
+arrow function
+async function
+immediately invoked function expression
+callback function
+higher order function
+statefull function
+currying function
+closure function
+recursive function

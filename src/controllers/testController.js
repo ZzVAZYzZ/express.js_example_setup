@@ -63,6 +63,15 @@ const bcryptTest = asyncHandler(async (req,res) => {
     
 })
 
+//@desc vipTest Test
+//@route POST /api/test/bcryptTest
+//@access public
+const vipTest0 = asyncHandler(async (req,res)=>{
+    res.status(200).json({message:"vip0"});
+})
+const vipTest1 = asyncHandler(async (req,res)=>{
+    res.status(200).json({message:"vip1"});
+})
 
 
-module.exports = {firstTest,errorTest, postTestMongodb,bcryptTest}
+module.exports = {firstTest,errorTest, postTestMongodb,bcryptTest,vipTest0,vipTest1}

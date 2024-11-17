@@ -46,6 +46,8 @@ const login = asyncHandler( async(req,res) => {
     const {email, password} = req.body;
     const ipAddress = req.ip || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     const userAgent = req.useragent;
+    console.log(userAgent);
+    
     const time = String(
         DateTime.now().setZone("Asia/Ho_Chi_Minh").toFormat("yyyy-MM-dd HH:mm:ss")
     );
